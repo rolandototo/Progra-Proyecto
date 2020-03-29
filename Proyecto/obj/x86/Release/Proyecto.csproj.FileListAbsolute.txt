@@ -1,0 +1,12 @@
+/home/rolandototo/C#/Proyecto/Proyecto/bin/Release/Proyecto.exe
+/home/rolandototo/C#/Proyecto/Proyecto/bin/Release/Newtonsoft.Json.dll
+/home/rolandototo/C#/Proyecto/Proyecto/bin/Release/Newtonsoft.Json.xml
+/home/rolandototo/C#/Proyecto/Proyecto/obj/x86/Release/Proyecto.csproj.CopyComplete
+/home/rolandototo/C#/Proyecto/Proyecto/obj/x86/Release/Proyecto.exe
+/home/rolandototo/C#/Proyecto/Proyecto/obj/x86/Release/Proyecto.csprojAssemblyReference.cache
+/home/rolando/C#/Proyecto/Proyecto/bin/Release/Proyecto.exe
+/home/rolando/C#/Proyecto/Proyecto/bin/Release/Newtonsoft.Json.dll
+/home/rolando/C#/Proyecto/Proyecto/bin/Release/Newtonsoft.Json.xml
+/home/rolando/C#/Proyecto/Proyecto/obj/x86/Release/Proyecto.csprojAssemblyReference.cache
+/home/rolando/C#/Proyecto/Proyecto/obj/x86/Release/Proyecto.csproj.CopyComplete
+/home/rolando/C#/Proyecto/Proyecto/obj/x86/Release/Proyecto.exe

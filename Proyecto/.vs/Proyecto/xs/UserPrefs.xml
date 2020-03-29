@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{459A793A-6CEA-4E5D-860A-90E3CD900DF2}|Default">
+  <MonoDevelop.Ide.ItemProperties.Proyecto PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Login.cs">
+    <Files>
+      <File FileName="Login.cs" Line="20" Column="13" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Proyecto" expanded="True">
+            <Node name="Proyecto" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Login.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
