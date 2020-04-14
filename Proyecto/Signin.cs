@@ -54,7 +54,7 @@ namespace Proyecto
                 Encriptacion ec = new Encriptacion();
 
 
-                string decopass = ec.Codificacion(contra);
+                string decopass = Encriptacion.GetSHA256(contra);
 
 
                 data.usuarios.Add(new Usuario { user = nombre, pass = decopass, session = tipo });

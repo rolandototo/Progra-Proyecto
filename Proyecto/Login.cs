@@ -83,12 +83,15 @@ namespace Proyecto
 
                     if (user == persona.user)
                     {
+
                         correccion = false;
-                        Encriptacion ec = new Encriptacion();
-                        string decopass = ec.Decodificacion(persona.pass);
+
+                        string EPass = Encriptacion.GetSHA256(pass);
 
 
-                        if (pass == decopass)
+
+
+                        if (EPass == persona.pass)
                         {
                             correccionpass = false;
                         Clear();
