@@ -44,7 +44,7 @@ namespace Proyecto
             }
             while (!conti);
 
-
+            // loooool
 
             foreach (var persona in data.clientes)
             {
