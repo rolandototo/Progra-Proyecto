@@ -11,34 +11,17 @@ namespace Proyecto
         //Taller.json
         /// //////////////////////////////////////////////////////////////////
 
-        public Cl desCl()
-        {
-            string DatosTaller = File.ReadAllText(@"taller.json");
-            var data = JsonConvert.DeserializeObject<Cl>(DatosTaller);
-            return data;
-        }
-        public string sereCl(Cl b)
-        {
-            var datos = JsonConvert.SerializeObject(b);
-            return datos;
-        }
-
+        public Cl desCl() => JsonConvert.DeserializeObject<Cl>(File.ReadAllText(@"taller.json"));
+       
+        public string sereCl(Cl b) => JsonConvert.SerializeObject(b);
 
         //Usuarios.json
         /// ///////////////////////////////////////////////////////////////
 
-        public US desUS()
-        {
-            string DatosUsuarios = File.ReadAllText(@"usuarios.json");
-            var data = JsonConvert.DeserializeObject<US>(DatosUsuarios);
-            return data;
-        }
-        public string sereUS(US b)
-        {
+        public US desUS() => JsonConvert.DeserializeObject<US>(File.ReadAllText(@"usuarios.json"));
 
-            var datos = JsonConvert.SerializeObject(b);
-            return datos;
-        }
+        public string sereUS(US b) => JsonConvert.SerializeObject(b);
+
 
     }
 

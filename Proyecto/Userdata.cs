@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Console;
 
 namespace Proyecto
 {
@@ -19,17 +20,17 @@ namespace Proyecto
         public void Init(string a)
         {
             nombre = a;
-            Console.WriteLine("Bienvenido Usuario : " + nombre);
+            WriteLine("Bienvenido Usuario : " + nombre);
 
             menu();
         }
         void menu()
         {
-            Console.WriteLine("Que opciones desea ejecuar?");
-            Console.WriteLine("\t1) Ver informacion del usuario");
-            Console.WriteLine("\t2) Ver ticket");
-            Console.WriteLine("\t3) Cerrar sesion");
-            Console.WriteLine("\t4) Cerrar programa");
+            WriteLine("Que opciones desea ejecuar?");
+            WriteLine("\t1) Ver informacion del usuario");
+            WriteLine("\t2) Ver ticket");
+            WriteLine("\t3) Cerrar sesion");
+            WriteLine("\t4) Cerrar programa");
             valMenu();
         }
 
@@ -44,18 +45,16 @@ namespace Proyecto
 
             do
             {
-                Console.Write("Ingrese el numero de la opcion que desee ejecutar:..... ");
-                op = Console.ReadLine();
+                Write("Ingrese el numero de la opcion que desee ejecutar:..... ");
+                op = ReadLine();
 
                 opval = int.TryParse(op, out opcion);
-                if (opval == false)
-                {
-                    Console.WriteLine(menNV);
-                }
+                if (opval == false) WriteLine(menNV);
+
             }
 
             while (!opval);
-            Console.Clear();
+            Clear();
             selecMenu();
         }
 
@@ -65,7 +64,7 @@ namespace Proyecto
             {
 
                 case 1: ImprecionDatos(); break;
-                case 2: Console.WriteLine(mensaje); break;
+                case 2: WriteLine(mensaje); break;
                 case 3:
                     Login lg = new Login();
 
@@ -73,15 +72,14 @@ namespace Proyecto
                 case 4: Environment.Exit(1); break;
                 default:
                     menu();
-                    Console.WriteLine(menNV);
+                    WriteLine(menNV);
                     selecMenu();
                     break;
 
             }
-
-            Console.Write("Precione una tecla para regresar al menu......");
-            Console.ReadKey();
-            Console.Clear();
+            Write("Precione una tecla para regresar al menu......");
+            ReadKey();
+            Clear();
             menu();
             selecMenu();
         }
@@ -98,20 +96,17 @@ namespace Proyecto
 
                     if (nombre == persona.nombre)
                     {
-
-
-                        Console.WriteLine("\n....Nombre: " + persona.nombre);
-                        Console.WriteLine("....Dui: " + persona.dui);
-                        Console.WriteLine("....Correo: " + persona.correo);
-                        Console.WriteLine("\n....Marca: " + car.marca);
-                        Console.WriteLine("....Placa: " + car.placa);
-                        Console.WriteLine("....Año: " + car.ano);
-                        Console.WriteLine("....Color: " + car.color);
+                        WriteLine("\n....Nombre: " + persona.nombre);
+                        WriteLine("....Dui: " + persona.dui);
+                        WriteLine("....Correo: " + persona.correo);
+                        WriteLine("\n....Marca: " + car.marca);
+                        WriteLine("....Placa: " + car.placa);
+                        WriteLine("....Año: " + car.ano);
+                        WriteLine("....Color: " + car.color);
 
                         foreach (var repa in car.reparaciones)
                         {
-
-                            Console.WriteLine("\n.......Repareciones: " + repa);
+                            WriteLine("\n.......Repareciones: " + repa);
                             break;
 
                         }

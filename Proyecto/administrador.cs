@@ -12,23 +12,12 @@ namespace Proyecto
         public void Init() 
         {
 
-
-
             Console.WriteLine("Bienvenido, a ingresado en una cuenta de administrador\n\n");
-
-
 
             menu();
             selecMenu();
 
         }
-
-
-       
-
-            
-
-
             void menu()
             {
                 Console.WriteLine("************************************************************************");

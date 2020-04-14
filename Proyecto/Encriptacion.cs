@@ -6,32 +6,10 @@ namespace Proyecto
     public class Encriptacion
     {
 
-        public string Codificacion(string p)
-        {
+        public string Codificacion(string p) => Convert.ToBase64String(Encoding.UTF8.GetBytes(p));
+       
 
-            string plainText = p;
+        public string Decodificacion(string p) => Encoding.UTF8.GetString(Convert.FromBase64String(p));
 
-            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-
-            string encodedText = Convert.ToBase64String(plainTextBytes);
-
-            return encodedText;
-
-
-
-        }
-
-        public string Decodificacion(string p)
-        {
-            string encodedText = p;
-
-            var encodedTextBytes = Convert.FromBase64String(encodedText);
-
-            string plainText = Encoding.UTF8.GetString(encodedTextBytes);
-
-
-            return plainText;
-
-        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using static System.Console;
+
 namespace Proyecto
 {
     public class Busqueda
@@ -16,10 +18,9 @@ namespace Proyecto
 
             void FunBus()
             {
-               
-                Console.WriteLine("////Ingrese el nombre o el dui del usuario a buscar////");
-                Console.Write("\n////");
-                string busc = Console.ReadLine();
+                WriteLine("////Ingrese el nombre o el dui del usuario a buscar////");
+                Write("\n////");
+                string busc = ReadLine();
 
                 foreach (var persona in data.clientes)
                 {
@@ -31,19 +32,18 @@ namespace Proyecto
                                 if (busc == persona.nombre || busc == persona.dui || busc == car.placa)
                                 {
                                     correccion = false;
-
-                                    Console.WriteLine("\n....Nombre: " + persona.nombre);
-                                    Console.WriteLine("....Dui: " + persona.dui);
-                                    Console.WriteLine("....Correo: " + persona.correo);
-                                    Console.WriteLine("\n....Marca: " + car.marca);
-                                    Console.WriteLine("....Placa: " + car.placa);
-                                    Console.WriteLine("....Año: " + car.ano);
-                                    Console.WriteLine("....Color: " + car.color);
+                            WriteLine("\n....Nombre: " + persona.nombre);
+                            WriteLine("....Dui: " + persona.dui);
+                            WriteLine("....Correo: " + persona.correo);
+                            WriteLine("\n....Marca: " + car.marca);
+                            WriteLine("....Placa: " + car.placa);
+                            WriteLine("....Año: " + car.ano);
+                            WriteLine("....Color: " + car.color);
 
                                     foreach (var repa in car.reparaciones)
                                     {
                                         correccion = false;
-                                        Console.WriteLine("\n.......Repareciones: " + repa);
+                                WriteLine("\n.......Repareciones: " + repa);
                                         break;
                                        
                                     }
@@ -57,26 +57,22 @@ namespace Proyecto
 
                         }
 
-                        if (correccion == false)
-                        {
-                            break;
-                        }
+                        if (correccion == false) break;
+                   
                 }
 
                 if(correccion == true)
                 {
-
-                    Console.WriteLine("El nombre a buscar no existe en la base de datos...");
-                    Console.WriteLine("Ingrese un nombre corecto");
-                    Console.Write("\n\nApreta cualquier tecla para continuar....");
-                    Console.ReadKey();
-                    Console.Clear();
+                    WriteLine("El nombre a buscar no existe en la base de datos...");
+                    WriteLine("Ingrese un nombre corecto");
+                    Write("\n\nApreta cualquier tecla para continuar....");
+                    ReadKey();
+                    Clear();
                     FunBus();
                 }
-
-                Console.Write("\n\nApreta cualquier tecla para regresar al menu....");
-                Console.ReadKey();
-                Console.Clear();
+                Write("\n\nApreta cualquier tecla para regresar al menu....");
+                ReadKey();
+                Clear();
                 administrador adm = new administrador();
                 adm.Init();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security;
+using static System.Console;
 
 namespace Proyecto
 {
@@ -25,24 +26,21 @@ namespace Proyecto
 
         void logwrite()
             {
-
-                Console.Clear();
+            Clear();
                 if (correccion == true)
                 {
-                    Console.WriteLine("El usuario no exixte!!! ");
-                    Console.WriteLine("Intente otra ves");
+                WriteLine("El usuario no exixte!!! ");
+                WriteLine("Intente otra ves");
                 }
                 else if (correccionpass == true)
                 {
-                    Console.WriteLine("El pass no coinside!!! ");
-                    Console.WriteLine("Intente otra ves");
+                WriteLine("El pass no coinside!!! ");
+                WriteLine("Intente otra ves");
                 }
-
-
-                Console.WriteLine("**********LOG IN**********");
-                Console.Write("Usuario: ");
-                user = Console.ReadLine();
-                Console.Write("Pass: ");
+            WriteLine("**********LOG IN**********");
+            Write("Usuario: ");
+                user = ReadLine();
+            Write("Pass: ");
                 SecureString codepass = securepass();
                 pass = new System.Net.NetworkCredential(string.Empty, codepass).Password;
                 Comprovacion();
@@ -59,16 +57,16 @@ namespace Proyecto
 
                 do
                 {
-                    keyInfo = Console.ReadKey(true);
+                    keyInfo = ReadKey(true);
                     if (!char.IsControl(keyInfo.KeyChar))
                     {
                         secpass.AppendChar(keyInfo.KeyChar);
-                        Console.Write("*");
+                    Write("*");
                     }
                     else if (keyInfo.Key == ConsoleKey.Backspace && secpass.Length > 0)
                     {
                         secpass.RemoveAt(secpass.Length - 1);
-                        Console.Write("\b \b");
+                    Write("\b \b");
                     }
                 }
                 while (keyInfo.Key != ConsoleKey.Enter);
@@ -76,16 +74,9 @@ namespace Proyecto
                     return secpass;
                 }
             }
-
-
-
-
-
+            
             void Comprovacion()
             {
-
-                
-                
                 var data = js.desUS();
                 foreach (var persona in data.usuarios)
                 {
@@ -100,13 +91,13 @@ namespace Proyecto
                         if (pass == decopass)
                         {
                             correccionpass = false;
-                            Console.Clear();
-                            Console.WriteLine("Sesion accedida!!!");
-                            Console.ReadKey();
+                        Clear();
+                        WriteLine("Sesion accedida!!!");
+                        ReadKey();
 
                                 if ("admin" == persona.session)
                                 {
-                                    Console.Clear();
+                            Clear();
                             administrador adm = new administrador();
                             adm.Init();
 
@@ -114,7 +105,7 @@ namespace Proyecto
                                 }
                                 if ("maestro" == persona.session)
                                 {
-                                    Console.Clear();
+                            Clear();
                             Maestro m = new Maestro();
                             m.Init();
 
@@ -122,8 +113,7 @@ namespace Proyecto
                                 }
                                 if("user" == persona.session)
                                 {
-
-                            Console.Clear();
+                            Clear();
 
                             Userdata us = new Userdata();
                             us.Init(user);
@@ -148,10 +138,8 @@ namespace Proyecto
 
 
 
-                if (correccion == true || correccionpass == true)
-                {
-                    logwrite();
-                }
+                if (correccion == true || correccionpass == true) logwrite();
+
 
             }
 

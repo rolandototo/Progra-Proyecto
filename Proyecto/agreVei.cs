@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using static System.Console;
+
 namespace Proyecto
 
 {
@@ -13,32 +15,32 @@ namespace Proyecto
             Json js = new Json();
 
             var data = js.desCl();
+            WriteLine("Agregar vehiculos a un cliente");
+            WriteLine("Ingrese el nombre del cliente a ingresar");
+            string nom = ReadLine();
+            WriteLine("Que marca del vehiculo es?");
+            string marc = ReadLine();
+            WriteLine("Cual es la placa del vehiculo?");
+            string plac = ReadLine();
+            WriteLine("Que color es el vehiculo?");
+            string colo = ReadLine();
+            WriteLine("Que año es el vehiculo es?");
+            string an = ReadLine();
+            WriteLine("Que reparaciones necesita?");
 
-            Console.WriteLine("Agregar vehiculos a un cliente");
-            Console.WriteLine("Ingrese el nombre del cliente a ingresar");
-            string nom = Console.ReadLine();
-            Console.WriteLine("Que marca del vehiculo es?");
-            string marc = Console.ReadLine();
-            Console.WriteLine("Cual es la placa del vehiculo?");
-            string plac = Console.ReadLine();
-            Console.WriteLine("Que color es el vehiculo?");
-            string colo = Console.ReadLine();
-            Console.WriteLine("Que año es el vehiculo es?");
-            string an = Console.ReadLine();
-            Console.WriteLine("Que reparaciones necesita?");
             List<string> repa = new List<string>();
             bool conti = false;
             do
             {
-                repa.Add(Console.ReadLine());
+                repa.Add(ReadLine());
+                WriteLine("Desea agregar otra reparacion? (y/n)");
 
-                Console.WriteLine("Desea agregar otra reparacion? (y/n)");
+                char confir = char.Parse(ReadLine());
 
-                char confir = char.Parse(Console.ReadLine());
-                if(confir == 'n'|| confir == 'N')
-                {
-                    conti = true;
-                }
+                if (confir == 'n' || confir == 'N') conti = true;
+                else if (confir == 's' || confir == 'S') conti = false;
+                else WriteLine("Escriba una opcion valida");
+
             }
             while (!conti);
 
@@ -49,11 +51,9 @@ namespace Proyecto
                 if (nom == persona.nombre)
                 {
                     persona.veiculos.Add(new Veiculo { marca = marc , placa = plac, color = colo, ano = an, reparaciones = repa});
-                    string obj = js.sereCl(data);
 
-
-                    File.WriteAllText(@"taller.json", obj);
-                    Console.WriteLine("Usuario Guardado");
+                    File.WriteAllText(@"taller.json", js.sereCl(data));
+                    WriteLine("Usuario Guardado");
                     break;
                 }
 

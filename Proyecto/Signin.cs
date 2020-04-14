@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using static System.Console;
 
 namespace Proyecto
 {
@@ -18,13 +19,11 @@ namespace Proyecto
 
             void ingreso()
             {
-
-                Console.WriteLine("Ingrese datos del nuevo Usuario");
-
-                Console.Write("Nombre: ");
-                nombre = Console.ReadLine();
-                Console.Write("Pass: ");
-                contra = Console.ReadLine();
+                WriteLine("Ingrese datos del nuevo Usuario");
+                Write("Nombre: ");
+                nombre = ReadLine();
+                Write("Pass: ");
+                contra = ReadLine();
                 valMenu();
                 filtro();
 
@@ -42,15 +41,13 @@ namespace Proyecto
                 {
                     if (nombre == persona.user)
                     {
-                        Console.WriteLine("Usuario ya registrado, intente otra ves...");
-                        Console.WriteLine("Precione cualquier tecla para continuar...");
-                        Console.ReadKey();
+                        WriteLine("Usuario ya registrado, intente otra ves...");
+                        WriteLine("Precione cualquier tecla para continuar...");
+                        ReadKey();
                         ingreso();
                     }
-                    else
-                    {
-                        break;
-                    }
+                    else break;
+                   
                 }
 
 
@@ -63,19 +60,16 @@ namespace Proyecto
                 data.usuarios.Add(new Usuario { user = nombre, pass = decopass, session = tipo });
 
 
-                string obj = js.sereUS(data);
-
-
-                File.WriteAllText(@"usuarios.json", obj);
-                Console.WriteLine("Usuario Guardado");
+                File.WriteAllText(@"usuarios.json", js.sereUS(data));
+                WriteLine("Usuario Guardado");
             }
             void menutipo()
             {
-                Console.Write("Tipo de usuario\n\n");
-                Console.WriteLine("Elija un numero de las 3 opciones de tipo de usuario:\n");
-                Console.WriteLine("\t1) Usuario");
-                Console.WriteLine("\t2) Administrador");
-                Console.WriteLine("\t3) Maestro");
+                Write("Tipo de usuario\n\n");
+                WriteLine("Elija un numero de las 3 opciones de tipo de usuario:\n");
+                WriteLine("\t1) Usuario");
+                WriteLine("\t2) Administrador");
+                WriteLine("\t3) Maestro");
             }
 
             void valMenu()
@@ -88,19 +82,17 @@ namespace Proyecto
                 do
                 {
                     menutipo();
-                    Console.Write("Numero de opcion: ");
-                    op = Console.ReadLine();
+                    Write("Numero de opcion: ");
+                    op = ReadLine();
 
                     // Tryparse ya que devuelve datos booleanos
                     opval = int.TryParse(op, out opcion);
-                    if (opval == false)
-                    {
-                        Console.WriteLine("Ingrese un dato corecto, un numero del 1 al 3!!!");
-                    }
+                    if (opval == false) WriteLine("Ingrese un dato corecto, un numero del 1 al 3!!!");
+
                 }
 
                 while (!opval);
-                Console.Clear();
+                Clear();
                 type();
             }
 
@@ -117,7 +109,7 @@ namespace Proyecto
                     default:
 
                         menutipo();
-                        Console.WriteLine("Elija una opcion valida del 1 al 3");
+                        WriteLine("Elija una opcion valida del 1 al 3");
                         valMenu();
                         type();
 
@@ -126,7 +118,7 @@ namespace Proyecto
                 }
 
             }
-            Console.ReadKey();
+            ReadKey();
             administrador adm = new administrador();
             adm.Init();
 
