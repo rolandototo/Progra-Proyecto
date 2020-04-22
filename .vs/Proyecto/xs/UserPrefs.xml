@@ -1,25 +1,15 @@
 ﻿<Properties StartupConfiguration="{459A793A-6CEA-4E5D-860A-90E3CD900DF2}|Default">
   <MonoDevelop.Ide.ItemProperties.Proyecto PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Proyecto/Login.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Proyecto/Encriptacion.cs">
     <Files>
-      <File FileName="Proyecto/Login.cs" Line="29" Column="21" />
-      <File FileName="Proyecto/Signin.cs" Line="70" Column="43" />
-      <File FileName="Proyecto/Userdata.cs" Line="76" Column="33" />
-      <File FileName="Proyecto/Busqueda.cs" Line="30" Column="48" />
-      <File FileName="Proyecto/administrador.cs" Line="29" Column="43" />
-      <File FileName="Proyecto/Encriptacion.cs" Line="29" Column="1" />
-      <File FileName="Proyecto/Json.cs" Line="14" Column="57" />
-      <File FileName="Proyecto/packages.config" Line="1" Column="1" />
-      <File FileName="Proyecto/Program.cs" Line="1" Column="1" />
-      <File FileName="Proyecto/MoodVei.cs" Line="8" Column="13" />
-      <File FileName="Proyecto/agreVei.cs" Line="47" Column="23" />
+      <File FileName="Proyecto/Encriptacion.cs" Line="16" Column="58" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Proyecto" expanded="True">
             <Node name="Proyecto" expanded="True">
-              <Node name="Login.cs" selected="True" />
+              <Node name="Encriptacion.cs" selected="True" />
             </Node>
           </Node>
         </State>
