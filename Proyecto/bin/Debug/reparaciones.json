@@ -1,0 +1,30 @@
+{
+	"reparaciones": [{
+		"reparacion": "Juan",
+		"placa": "Juan",
+		"visitas": null,
+		"materiales": "1276856-3",
+		"costomaterial": "$200",
+		"horas": "4",
+		"costohora": null,
+		"estadodeReparacion": null
+	}, {
+		"reparacion": "Luces",
+		"placa": "1234D-9",
+		"visitas": null,
+		"materiales": "Focos DD13F",
+		"costomaterial": "$75",
+		"horas": "3",
+		"costohora": "$15",
+		"estadodeReparacion": null
+	}, {
+		"reparacion": "",
+		"placa": "",
+		"visitas": null,
+		"materiales": "",
+		"costomaterial": "",
+		"horas": "",
+		"costohora": "",
+		"estadodeReparacion": null
+	}]
+}
