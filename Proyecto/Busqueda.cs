@@ -12,73 +12,79 @@ namespace Proyecto
 
         public Busqueda()
         {
-            var data = js.desCl();
+            Clear();
+            bool error = true;
+            Search();
 
-            FunBus();
-
-            void FunBus()
+            void Search()
             {
-                WriteLine("////Ingrese el nombre o el dui del usuario a buscar////");
-                Write("\n////");
-                string busc = ReadLine();
+                WriteLine("\n\t\tIngrese el nombre del cliente o número de DUI que desea buscar:");
+                string wanted = ReadLine().ToString();
+                string validationDUI = "", FastOp = "", validationPLACA = "";
+                Json js = new Json();
+                var dataCl = js.desCl();
+                var dataVe = js.desVe();
+                var dataRe = js.desRe();
+                Clear();
+                WriteLine("\n\t\tRESULTADO");
 
-                foreach (var persona in data.clientes)
+                foreach (var person in dataCl.clientes)
                 {
-                    
-                        foreach (var car in persona.veiculos)
+                    if (wanted == person.nombre || wanted == person.dui)
+                    {
+                        WriteLine("\n[A] Agregar vehículo [B] Editar datos de cliente [C] Editar datos de vehículo");
+                        error = false;
+                        Write("\n\tNombre: ");
+                        WriteLine(person.nombre);
+                        Write("\tDUI: ");
+                        WriteLine(person.dui);
+                        Write("\tNúmero cel.: ");
+                        WriteLine(person.numero);
+                        Write("\tCorreo: ");
+                        WriteLine(person.correo);
+                        validationDUI = person.dui;
+                        foreach (var car in dataVe.vehiculos)
                         {
-                            correccion = false;
-
-                                if (busc == persona.nombre || busc == persona.dui || busc == car.placa)
+                            if (validationDUI == car.dui)
+                            {
+                                error = false;
+                                Write("\tMarca de carro: ");
+                                WriteLine(car.marca);
+                                Write("\t" + "Placa: ");
+                                WriteLine(car.placa);
+                                Write("\t" + "Año: ");
+                                WriteLine(car.año);
+                                Write("\t" + "Color: ");
+                                WriteLine(car.color);
+                                validationPLACA = car.placa;
+                                foreach (var daño in dataRe.reparaciones)
                                 {
-                                    correccion = false;
-                            WriteLine("\n....Nombre: " + persona.nombre);
-                            WriteLine("....Dui: " + persona.dui);
-                            WriteLine("....Correo: " + persona.correo);
-                            WriteLine("\n....Marca: " + car.marca);
-                            WriteLine("....Placa: " + car.placa);
-                            WriteLine("....Año: " + car.ano);
-                            WriteLine("....Color: " + car.color);
-
-                                    foreach (var repa in car.reparaciones)
+                                    if (validationPLACA == daño.placa)
                                     {
-                                        correccion = false;
-                                WriteLine("\n.......Repareciones: " + repa);
+                                        Write("\tReparación de: ");
+                                        WriteLine(daño.reparacion);
+                                        Write("\tMateriales para repación: ");
+                                        WriteLine(daño.materiales);
+                                        Write("\tCosto de materiales: ");
+                                        WriteLine(daño.costomaterial);
+                                        Write("\tHoras en repación: ");
+                                        WriteLine(daño.horas);
+                                        Write("\tCosto por hora de mano de obra: ");
+                                        WriteLine(daño.costohora);
                                         break;
-                                       
                                     }
                                 }
-
-                                else if (busc != persona.nombre || busc != persona.dui || busc != car.placa)
-                                {
-                                    correccion = true;
-                                    continue;
-                                }
-
+                            }
                         }
-
-                        if (correccion == false) break;
-                   
+                    }
                 }
-
-                if(correccion == true)
+                if (error == true)
                 {
-                    WriteLine("El nombre a buscar no existe en la base de datos...");
-                    WriteLine("Ingrese un nombre corecto");
-                    Write("\n\nApreta cualquier tecla para continuar....");
-                    ReadKey();
-                    Clear();
-                    FunBus();
+                    WriteLine("\n\t\tDatos no encontrados");
                 }
-                Write("\n\nApreta cualquier tecla para regresar al menu....");
-                ReadKey();
-                Clear();
-                administrador adm = new administrador();
-                adm.Init();
 
+                Clear(); 
             }
-
-           
 
 
         }

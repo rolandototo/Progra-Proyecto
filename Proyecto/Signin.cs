@@ -96,17 +96,14 @@ namespace Proyecto
             nvisita = string.Empty;
 
             dataCl.clientes.Add(new Clients { nombre = name, dui = ndui, correo = email, numero = number, visitas = nvisita });
-            string obj = js.sereCl(dataCl);
-            File.WriteAllText(@"clientes.json", obj);
+            File.WriteAllText(@"clientes.json", js.sereCl(dataCl));
             WriteLine("\n\t\tDatos de contacto guardados");
             Thread.Sleep(1000); 
             Clear();
-            string validationDUI = ndui;
-            string validationPLACA = string.Empty;
-            AddCar(validationDUI, validationPLACA);
+            AddCar(ndui);
             ReadKey();
         }
-        public void AddCar(string validationDUI, string validationPLACA)
+        public void AddCar(string validationDUI)
         {
             Json js = new Json();
             var dataVe = js.desVe();
@@ -126,12 +123,10 @@ namespace Proyecto
             estadoVE = ReadLine();
 
             dataVe.vehiculos.Add(new Vehicles { dui = ndui, marca = brand, placa = plate, color = colors, año = year, estado = estadoVE });
-            string obj = js.sereVe(dataVe);
-            File.WriteAllText(@"vehiculos.json", obj);
+            File.WriteAllText(@"vehiculos.json", js.sereVe(dataVe));
             WriteLine("\n\t\tDatos de vehículo guardado");
             Thread.Sleep(1000); Clear();
-            validationPLACA = plate;
-            AddReparation(validationPLACA);
+            AddReparation(plate);
 
         }
         public void AddReparation(string validationPLACA)
@@ -170,8 +165,7 @@ namespace Proyecto
             }
             tcuenta = VarEmpty;
             dataRe.reparaciones.Add(new Reparation { fecha = date, reparacion = repa, materiales = materials, placa = nplaca, costomaterial = costm, horas = hour, costohora = costh, cuenta = tcuenta, estadodeReparacion = estadoREPA });
-            string obj = js.sereRe(dataRe);
-            File.WriteAllText(@"reparaciones.json", obj);
+            File.WriteAllText(@"reparaciones.json", js.sereRe(dataRe));
             WriteLine("\n\t\tDatos de reparación guardado");
         }
     }

@@ -7,9 +7,6 @@ namespace Proyecto
     
     public class Json
     {
-
-
-
         //Usuarios.json
         ///////////////////////////////////////////////////////////////////
 
@@ -32,11 +29,6 @@ namespace Proyecto
         public string sereRe(ReparationClass b) => JsonConvert.SerializeObject(b);
          
     }
-
-
-
-
-
 
     //Lista de Usuarios
     /// ///////////////////////////////////////////////////////////////

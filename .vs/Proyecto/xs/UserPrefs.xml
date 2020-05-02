@@ -1,20 +1,21 @@
 ﻿<Properties StartupConfiguration="{459A793A-6CEA-4E5D-860A-90E3CD900DF2}|Default">
   <MonoDevelop.Ide.ItemProperties.Proyecto PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Proyecto/Encriptacion.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Proyecto/Busqueda.cs">
     <Files>
       <File FileName="Proyecto/Userdata.cs" Line="20" Column="10" />
-      <File FileName="Proyecto/administrador.cs" Line="30" Column="34" />
-      <File FileName="Proyecto/Signin.cs" Line="64" Column="17" />
-      <File FileName="Proyecto/Json.cs" Line="100" Column="42" NotebookId="1" />
-      <File FileName="Proyecto/Recursos.cs" Line="2" Column="1" NotebookId="1" />
-      <File FileName="Proyecto/Encriptacion.cs" Line="24" Column="1" NotebookId="1" />
+      <File FileName="Proyecto/administrador.cs" Line="26" Column="25" />
+      <File FileName="Proyecto/Signin.cs" Line="131" Column="10" />
+      <File FileName="Proyecto/Busqueda.cs" Line="28" Column="60" />
+      <File FileName="Proyecto/Json.cs" Line="32" Column="5" NotebookId="1" />
+      <File FileName="Proyecto/Recursos.cs" Line="14" Column="11" NotebookId="1" />
+      <File FileName="Proyecto/Encriptacion.cs" Line="29" Column="1" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Proyecto" expanded="True">
             <Node name="Proyecto" expanded="True">
-              <Node name="Encriptacion.cs" selected="True" />
+              <Node name="Busqueda.cs" selected="True" />
             </Node>
           </Node>
         </State>
