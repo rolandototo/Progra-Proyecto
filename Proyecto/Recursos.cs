@@ -1,4 +1,7 @@
 ﻿using System;
+
+using static System.Console;
+
 namespace Proyecto
 {
     public class Recursos
@@ -16,21 +19,19 @@ namespace Proyecto
                 {
                     if (selected == i)
                     {
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("> ");
+                        ForegroundColor = ConsoleColor.Cyan;
+                        Write("> ");
                     }
                     else
                     {
-                        Console.Write("  ");
+                        Write("  ");
                     }
-
-                    Console.Write(lol[i] + "\n");
-
-                    Console.ResetColor();
+                    Write(lol[i] + "\n");
+                    ResetColor();
                 }
                
 
-                switch (Console.ReadKey(true).Key)
+                switch (ReadKey(true).Key)
                 {
                     case ConsoleKey.UpArrow:
                         selected = Math.Max(0, selected - 1);
@@ -46,10 +47,18 @@ namespace Proyecto
 
 
 
-                if (!done) Console.CursorTop = 2;
+                if (!done) CursorTop = 2;
 
             }
             return selected;
         }
+
+        public void White() { ForegroundColor = ConsoleColor.White; }
+        public void DBlue() { ForegroundColor = ConsoleColor.DarkBlue; }
+        public void DCyan() { ForegroundColor = ConsoleColor.DarkCyan; }
+        public void DYellow() { ForegroundColor = ConsoleColor.DarkYellow; }
+        public void DGray() { ForegroundColor = ConsoleColor.DarkGray; }
+        public void Cyan() { ForegroundColor = ConsoleColor.Cyan; }
+
     }
 }

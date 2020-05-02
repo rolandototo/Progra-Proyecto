@@ -22,8 +22,13 @@ namespace Proyecto
             {
 
 
-            string[] MenuOpt = { "Crear nuevo Usuario", "Buscar Usuario", "Modificar estado de veiculo", "Agregar vehiculo a usuario",
-             "Cotizacion de reparacion por vehiculo", "Cerrar sesion", "Cerrar Programa" };
+            string[] MenuOpt = { "Crear nuevo Usuario",
+                 "Buscar Usuario",
+                 "Modificar estado de veiculo",
+                 "Agregar vehiculo a usuario",
+                 "Cotizacion de reparacion por vehiculo",
+                 "Cerrar sesion",
+                 "Cerrar Programa" };
             opcion=InterMenu(MenuOpt);
                 
                
