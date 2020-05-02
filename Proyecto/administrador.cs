@@ -2,69 +2,33 @@
 
 namespace Proyecto
 {
-    public class administrador
+    public class administrador : Recursos
 
     {
         int opcion;
         string menNV = "INGRESE UN NUMERO VALIDO (entre el 1 al 6)....";
         string mensaje = "Funcion en mantenimineto";
-
+        
         public void Init() 
         {
 
-            Console.WriteLine("Bienvenido, a ingresado en una cuenta de administrador\n\n");
+            Console.WriteLine("Bienvenido, a ingresado en una cuenta de administrador\n");
 
             menu();
             selecMenu();
 
         }
-            void menu()
-            {
-                Console.WriteLine("************************************************************************");
-                Console.WriteLine("************************************************************************");
-                Console.WriteLine("**                                Admin                               **");
-                Console.WriteLine("**                                                                    **");
-                Console.WriteLine("**                                Menu                                **");
-                Console.WriteLine("**                                                                    **");
-                Console.WriteLine("**               1). Crear nuevo Usuario                              **");
-                Console.WriteLine("**               2). Buscar Usuario                                   **");
-                Console.WriteLine("**               3). Modificar estado de veiculo                      **");
-                Console.WriteLine("**               4). Agregar vehiculo a usuario                       **");
-                Console.WriteLine("**               5). Cotizacion de reparacion por vehiculo            **");
-                Console.WriteLine("**               6). Cerrar sesion                                    **");
-                Console.WriteLine("**               7). Cerrar Programa                                  **");
-                Console.WriteLine("**                                                                    **");
-                Console.WriteLine("************************************************************************");
-                Console.WriteLine("************************************************************************");
-
-                valMenu();
-            }
-
-
-            void valMenu()
+          void menu()
             {
 
-                string op;
 
-
-                Boolean opval = false;
-
-
-                do
-                {
-                    Console.Write("Ingrese el numero de la opcion que desee ejecutar:..... ");
-                    op = Console.ReadLine();
-
-                    opval = int.TryParse(op, out opcion);
-                    if (opval == false)
-                    {
-                        Console.WriteLine(menNV);
-                    }
-                }
-
-                while (!opval);
-                Console.Clear();
+            string[] MenuOpt = { "Crear nuevo Usuario", "Buscar Usuario", "Modificar estado de veiculo", "Agregar vehiculo a usuario",
+             "Cotizacion de reparacion por vehiculo", "Cerrar sesion", "Cerrar Programa" };
+            opcion=InterMenu(MenuOpt);
+                
+               
             }
+
 
             void selecMenu()
             {
@@ -72,13 +36,27 @@ namespace Proyecto
                 switch (opcion)
                 {
 
-                    case 1: SignIn sin = new SignIn(); break;
-                    case 2: Busqueda bs = new Busqueda(); break;
-                    case 3: MoodVei mv = new MoodVei(); break;
-                    case 4: agreVei ag = new agreVei(); break;
-                    case 5: Console.WriteLine(mensaje); break;
-                    case 6: lg.LogStart(); break;
-                    case 7: Environment.Exit(1); break;
+                    case 0:
+                    Console.Clear();
+                    SignIn sin = new SignIn(); break;
+                    case 1:
+                    Console.Clear();
+                    Busqueda bs = new Busqueda(); break;
+                    case 2:
+                    Console.Clear();
+                    MoodVei mv = new MoodVei(); break;
+                    case 3:
+                    Console.Clear();
+                    agreVei ag = new agreVei(); break;
+                    case 4:
+                    Console.Clear();
+                    Console.WriteLine(mensaje); break;
+                    case 5:
+                    Console.Clear();
+                    lg.LogStart(); break;
+                    case 6:
+                    Console.Clear();
+                    Environment.Exit(1); break;
                     default:
                         menu();
                         Console.WriteLine(menNV);

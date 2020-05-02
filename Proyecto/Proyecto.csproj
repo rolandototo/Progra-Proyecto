@@ -50,6 +50,7 @@
     <Compile Include="Json.cs" />
     <Compile Include="agreVei.cs" />
     <Compile Include="MoodVei.cs" />
+    <Compile Include="Recursos.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,21 +1,16 @@
 ﻿<Properties StartupConfiguration="{459A793A-6CEA-4E5D-860A-90E3CD900DF2}|Default">
   <MonoDevelop.Ide.ItemProperties.Proyecto PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Proyecto/Signin.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Proyecto/administrador.cs">
     <Files>
-      <File FileName="Proyecto/Encriptacion.cs" Line="24" Column="9" />
-      <File FileName="Proyecto/Busqueda.cs" Line="1" Column="1" />
-      <File FileName="Proyecto/Json.cs" Line="11" Column="22" />
-      <File FileName="Proyecto/administrador.cs" Line="21" Column="11" />
-      <File FileName="Proyecto/MoodVei.cs" Line="1" Column="1" />
-      <File FileName="Proyecto/Userdata.cs" Line="1" Column="1" />
-      <File FileName="Proyecto/Signin.cs" Line="1" Column="1" />
+      <File FileName="Proyecto/administrador.cs" Line="48" Column="1" />
+      <File FileName="Proyecto/Recursos.cs" Line="50" Column="17" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Proyecto" expanded="True">
             <Node name="Proyecto" expanded="True">
-              <Node name="Signin.cs" selected="True" />
+              <Node name="administrador.cs" selected="True" />
             </Node>
           </Node>
         </State>
