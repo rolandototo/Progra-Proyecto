@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Proyecto
 {
@@ -48,19 +49,40 @@ namespace Proyecto
             var DataVe = js.desVe();
             var DataCl = js.desCl();
             var DataRe = js.desRe();
-
+            if (File.Exists(@"ticket.txt"))
+            {
+                File.Delete(@"ticket.txt");
+                FileStream fl = File.Create(@"ticket.txt");
+                fl.Close();
+            }
+            else
+            {
+                FileStream fl = File.Create(@"ticket.txt");
+                fl.Close();
+            }
+            using (StreamWriter output = new StreamWriter(@"ticket.txt")) { 
             Console.WriteLine("\tTaller de la empresa");
+                output.WriteLine("\tTaller de la empresa");
             Console.WriteLine("Tiket #:");
-            Console.WriteLine("***************");
-            Console.WriteLine("Cliente: "+ nombre);
-            Console.WriteLine("Placa: "+placa);
-            Console.Write("\nFecha: "+ DateTime.Today.ToString("d"));
-            Console.Write("\t"+DateTime.Now.ToString("hh:mm:ss"));
-            Console.WriteLine("\n***************");
-            Console.WriteLine("Artículo\t|Precio|Costo Hora|Horas Trabajadas|Importe|");
-            Console.WriteLine("***************");
+                output.WriteLine("Tiket #:");
+                Console.WriteLine("***************");
+                output.WriteLine("***************");
+                Console.WriteLine("Cliente: "+ nombre);
+                output.WriteLine("Cliente: " + nombre);
+                Console.WriteLine("Placa: "+placa);
+                output.WriteLine("Placa: " + placa);
+                Console.Write("\nFecha: "+ DateTime.Today.ToString("d"));
+                output.Write("\nFecha: " + DateTime.Today.ToString("d"));
+                Console.Write("\t"+DateTime.Now.ToString("hh:mm:ss"));
+                output.Write("\t" + DateTime.Now.ToString("hh:mm:ss"));
+                Console.WriteLine("\n***************");
+                output.WriteLine("\n***************");
+                Console.WriteLine("Artículo\t|Precio|Costo Hora|Horas Trabajadas|Importe|");
+                output.WriteLine("Artículo\t|Precio|Costo Hora|Horas Trabajadas|Importe|");
+                Console.WriteLine("***************");
+                output.WriteLine("***************");
 
-            List<string> elerepa = new List<string>();
+                List<string> elerepa = new List<string>();
             string[] repa = elerepa.ToArray();
             double ContTotal = 0;
             int conRepa = 0;
@@ -76,9 +98,10 @@ namespace Proyecto
                     conRepa++;
                 }
             }
-            Console.WriteLine(dot());
+
             Console.WriteLine("SubTotal: "+ContTotal);
-            bool Sale2 = false;
+                output.WriteLine("SubTotal: " + ContTotal);
+                bool Sale2 = false;
             bool Sale10 = false;
             int Descu = 0;
             foreach (var clin in DataCl.clientes)
@@ -109,7 +132,9 @@ namespace Proyecto
             {
                 Console.WriteLine("Descuento aplicado: 0");
                 Console.WriteLine("\nTotal: " +ContTotal);
-            }
+                    output.WriteLine("Descuento aplicado: 0");
+                    output.WriteLine("\nTotal: " + ContTotal);
+                }
             else
             {
                 double porcent = 0;
@@ -117,9 +142,12 @@ namespace Proyecto
                 if (Descu == 10) porcent = 0.10;
                 Console.WriteLine("Descuento aplicado: "+Descu+"%");
                 Console.WriteLine("\nTotal: " + (ContTotal-(ContTotal * porcent)));
-            }
+                    output.WriteLine("Descuento aplicado: " + Descu + "%");
+                    output.WriteLine("\nTotal: " + (ContTotal - (ContTotal * porcent)));
+                }
             Console.WriteLine("Reparaciones hechas: "+conRepa);
-        }
+                output.WriteLine("Reparaciones hechas: " + conRepa);
+            }
         string dot()
         {
             string line = "";
@@ -128,6 +156,7 @@ namespace Proyecto
                 line.Insert(line.Length,"*"); 
             }
             return line;
+        }
         }
     }
 }
