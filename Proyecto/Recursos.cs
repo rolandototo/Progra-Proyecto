@@ -6,9 +6,9 @@ namespace Proyecto
 {
     public class Recursos
     {
-        public int InterMenu(string[] lol)
+        public int InterMenu(string[] OpcionInterMenu)
         {
-            int optionsCoun = lol.Length;
+            int optionsCoun = OpcionInterMenu.Length;
             int selected = 0;
             bool done = false;
           
@@ -26,7 +26,7 @@ namespace Proyecto
                     {
                         Write("  ");
                     }
-                    Write(lol[i] + "\n");
+                    Write(OpcionInterMenu[i] + "\n");
                     ResetColor();
                 }
 
