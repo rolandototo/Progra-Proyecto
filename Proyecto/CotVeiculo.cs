@@ -10,7 +10,6 @@ namespace Proyecto
     {
         Json js = new Json();
         Recursos rs = new Recursos();
-
         public void InitCoti(string ValidacionDui)
         {
             Clear();
@@ -18,7 +17,6 @@ namespace Proyecto
             var DataReparacion = js.desRe();
 
             List<string> ElementosMenuPlaca= new List<string>();
-
 
             foreach (var BusquedaVeiculo in DataVeiculos.vehiculos)
             {
@@ -28,12 +26,12 @@ namespace Proyecto
                 }
             }
 
-            ElementosMenuPlaca.Add("Salir al menu anterior");
+            ElementosMenuPlaca.Add("Salir al menú anterior");
             string[] MenuGetPlaca = ElementosMenuPlaca.ToArray();
             Clear();
-            WriteLine("Se encontro estos veiculos a modificar\n");
+            WriteLine("Se encontraron estos vehículos a modificar\n");
             int opt = rs.InterMenu(MenuGetPlaca);
-            int index = Array.IndexOf(MenuGetPlaca, "Salir al menu anterior");
+            int index = Array.IndexOf(MenuGetPlaca, "Salir al menú anterior");
 
             if (opt == index)
             {
@@ -46,8 +44,8 @@ namespace Proyecto
             {
                 string placa = p;
                 Clear();
-                WriteLine("Que desea hacer?\n");
-                string[] MenuFuncion = { "Crear una nueva reparacion","Modificar una Reparacion","Salir al menu anterior"};
+                WriteLine("¿Qué desea hacer?\n");
+                string[] MenuFuncion = { "Crear una nueva reparación","Modificar una reparación","Salir al menú anterior"};
                 int OpcionMenu = rs.InterMenu(MenuFuncion);
                 switch (OpcionMenu)
                 {
@@ -61,18 +59,18 @@ namespace Proyecto
             {
                 string reparacion, placa, material, costomate, horas, costohora, estado;
                 Clear();
-                Write("Escriba el nombre de la reparacion: ");
+                Write("\n\tEscriba el nombre de la reparación: ");
                 reparacion = ReadLine();
                 placa = p;
                 material = string.Empty;
                 costomate = "0";
                 horas = "0";
                 costohora = "0";
-                estado = "En Reparacion";
+                estado = "En reparación";
 
                 DataReparacion.reparaciones.Add(new Reparation { reparacion = reparacion, placa = placa, materiales = material, costomaterial = costomate, horas = horas, costohora = costohora, estadodeReparacion = estado });
                 js.Save(4, js.sereRe(DataReparacion));
-                WriteLine("Nueva reapracion guardada!");
+                WriteLine("Nueva reparación guardada");
                 Clear();
                 CrearOMod(placa);
             }
@@ -82,9 +80,8 @@ namespace Proyecto
             {
                 string placa = p;
                 Clear();
-                WriteLine("Reparaciones del veiculo " + p + "\n");
+                WriteLine("Reparaciones del vehículo " + p + "\n");
                 List<string> ElementosMenuReparacion = new List<string>();
-
 
                 foreach (var BusquedaReparacion in DataReparacion.reparaciones)
                 {
@@ -94,16 +91,16 @@ namespace Proyecto
                     }
                 }
 
-                ElementosMenuReparacion.Add("Salir al menu anterior");
+                ElementosMenuReparacion.Add("Salir al menú anterior");
                 string[] MenuGetReparaciones = ElementosMenuReparacion.ToArray();
                 Clear();
-                WriteLine("Se encontro estas reparaciones a modificar\n");
+                WriteLine("\tSe encontraron estas reparaciones a modificar\n");
                 int optMenuRepa = rs.InterMenu(MenuGetReparaciones);
-                int indexSalirAMenuPlaca = Array.IndexOf(MenuGetPlaca, "Salir al menu anterior");
+                int indexSalirAMenuPlaca = Array.IndexOf(MenuGetReparaciones, "Salir al menú anterior");
 
                 if (optMenuRepa == indexSalirAMenuPlaca)
                 {
-                    CrearOMod(p);
+                    CrearOMod(placa);
                 }
                 Clear();
                 MenuDatosRepa(MenuGetReparaciones[optMenuRepa]);
@@ -111,35 +108,35 @@ namespace Proyecto
                 void MenuDatosRepa(string e) 
                 {
                     string Nombrerepa = e;
-                    WriteLine("Datos de la reparacion seleccionada");
+                    WriteLine("\tDatos de la reparación seleccionada");
                     foreach (var BusquedaNombreRepa in DataReparacion.reparaciones)
                     {
                         if (Nombrerepa == BusquedaNombreRepa.reparacion)
                         {
-                            WriteLine("Nombre de la reparacion: " + BusquedaNombreRepa.reparacion);
-                            WriteLine("Numero de placa: " + BusquedaNombreRepa.placa);
-                            WriteLine("Nombre de material: " + BusquedaNombreRepa.materiales);
-                            WriteLine("Costo del material: " + BusquedaNombreRepa.costomaterial);
-                            WriteLine("Horas tranajadas: " + BusquedaNombreRepa.horas);
-                            WriteLine("Costo de hora: " + BusquedaNombreRepa.costohora);
-                            WriteLine("Estado de la reparacion: " + BusquedaNombreRepa.estadodeReparacion);
-
+                            WriteLine("\tNombre de la reparación: " + BusquedaNombreRepa.reparacion);
+                            WriteLine("\tNúmero de placa: " + BusquedaNombreRepa.placa);
+                            WriteLine("\tNombre de material: " + BusquedaNombreRepa.materiales);
+                            WriteLine("\tCosto del material: " + BusquedaNombreRepa.costomaterial);
+                            WriteLine("\tHoras trabajadas: " + BusquedaNombreRepa.horas);
+                            WriteLine("\tCosto de hora: " + BusquedaNombreRepa.costohora);
+                            WriteLine("\tEstado de la reparación: " + BusquedaNombreRepa.estadodeReparacion);
                         }
                     }
 
-
-
-                    string[] MenuOpcionMood = {
-                "Reparacion",
-                          "Material",
-                               "Costo del Material",
-                                    "Horas trabajadas",
-                                         "Costo de Horas",
-                                              "Estado de Reparacion", "Regresar al menu anterior" };
+                    string[] MenuOpcionMood = 
+                    {
+                        "Reparación",
+                        "Material",
+                        "Costo del material",
+                        "Horas trabajadas",
+                        "Costo de horas",
+                        "Estado de reparación", 
+                        "Regresar al menú anterior" 
+                    };
 
                     ReadKey();
                     Clear();
-                    WriteLine("Menu de datos a modificar\n");
+                    WriteLine("Menú de datos a modificar\n");
                     int opt2 = rs.InterMenu(MenuOpcionMood);
 
                     switch (opt2)
@@ -149,11 +146,11 @@ namespace Proyecto
                             {
                                 if (Nombrerepa == BusquedaRepacion.reparacion)
                                 {
-                                    WriteLine("\nEscriba el nuevo nombre de la reparacion: ");
+                                    WriteLine("\nEscriba el nuevo nombre de la reparación: ");
                                     BusquedaRepacion.reparacion = ReadLine();
 
                                     js.Save(4, js.sereRe(DataReparacion));
-                                    WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                    WriteLine("\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                     ReadKey();
                                     MenuDatosRepa(BusquedaRepacion.reparacion);
                                 }
@@ -168,7 +165,7 @@ namespace Proyecto
                                     BusquedaRepacion.materiales= ReadLine();
 
                                     js.Save(4, js.sereRe(DataReparacion));
-                                    WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                    WriteLine("\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                     ReadKey();
                                     MenuDatosRepa(Nombrerepa);
                                 }
@@ -183,7 +180,7 @@ namespace Proyecto
                                     BusquedaRepacion.costomaterial= ReadLine();
 
                                     js.Save(4, js.sereRe(DataReparacion));
-                                    WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                    WriteLine("\tDato guardado. Presione una tecla para regresar al menu de modificación");
                                     ReadKey();
                                     MenuDatosRepa(Nombrerepa);
                                 }
@@ -194,11 +191,11 @@ namespace Proyecto
                             {
                                 if (Nombrerepa == BusquedaRepacion.reparacion)
                                 {
-                                    WriteLine("\nEscriba el numero de hora: ");
+                                    WriteLine("\nEscriba el número de horas de trabajo: ");
                                     BusquedaRepacion.horas= ReadLine();
 
                                     js.Save(4, js.sereRe(DataReparacion));
-                                    WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                    WriteLine("\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                     ReadKey();
                                     MenuDatosRepa(Nombrerepa);
                                 }
@@ -213,7 +210,7 @@ namespace Proyecto
                                     BusquedaRepacion.costohora= ReadLine();
 
                                     js.Save(4, js.sereRe(DataReparacion));
-                                    WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                    WriteLine("\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                     ReadKey();
                                     MenuDatosRepa(Nombrerepa);
                                 }
@@ -224,21 +221,19 @@ namespace Proyecto
                             {
                                 if (Nombrerepa == BusquedaRepacion.reparacion)
                                 {
-                                    string[] estado = { "Reparado", "En Repara\"En Reparacion\"cion" };
+                                    string[] estado = { "Reparado", "En reparación" };
                                     Clear();
-                                    WriteLine("\nSeleccion el Estado de la reparacion");
+                                    WriteLine("\nSeleccione el estado de la reparacion");
                                     int opt3 = rs.InterMenu(estado);
                                     switch (opt3)
                                     {
                                         case 0:
                                             BusquedaRepacion.estadodeReparacion = "Reparado"; break;
                                         case 1:
-                                            BusquedaRepacion.estadodeReparacion= "En Reparacion"; break;
+                                            BusquedaRepacion.estadodeReparacion= "En reparación"; break;
                                     }
-
-
                                     js.Save(4, js.sereRe(DataReparacion));
-                                    WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                    WriteLine("\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                     ReadKey();
                                     MenuDatosRepa(Nombrerepa);
                                 }
@@ -246,18 +241,10 @@ namespace Proyecto
                             break;
                         case 6:
                             Menumod(p);
-
                             break;
-
                     }
                 }
-
-
-
             }
-
-
         }
-
     }
 }

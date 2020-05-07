@@ -8,15 +8,11 @@ namespace Proyecto
         Json js = new Json();
         Recursos rs = new Recursos();
         string dui, NombreUsuario;
-
-
         public void menutike(string nm)
         {
             var DataVe = js.desVe();
             var DataCl = js.desCl();
-
             List<string> elementos = new List<string>();
-
             foreach (var clien in DataCl.clientes)
             {
                 if (nm == clien.nombre)
@@ -32,24 +28,20 @@ namespace Proyecto
                     elementos.Add(vei.placa);
                 }
             }
-            elementos.Add("Salir al menu anterior");
+            elementos.Add("Salir al menú anterior");
             string[] menutik = elementos.ToArray();
-            Console.WriteLine("Escoja el veiculo poara imprimir el tiket\n");
+            Console.WriteLine("Escoja el vehíulo para imprimir el tiket\n");
 
             int opt =rs.InterMenu(menutik);
-            int index = Array.IndexOf(menutik, "Salir al menu anterior");
+            int index = Array.IndexOf(menutik, "Salir al menú anterior");
 
             if (opt == index)
             {
                 Console.Clear(); Userdata us = new Userdata();
-               
                 us.Init(NombreUsuario);
             }
             PintTiket(menutik[opt],nm);
         }
-
-
-
 
         void PintTiket(string placa, string nombre)
         {
@@ -65,7 +57,7 @@ namespace Proyecto
             Console.Write("\nFecha: "+ DateTime.Today.ToString("d"));
             Console.Write("\t"+DateTime.Now.ToString("hh:mm:ss"));
             Console.WriteLine("\n***************");
-            Console.WriteLine("Artriculo\t|Precio|Costo Hora|Horas Trabajadas|Importe|");
+            Console.WriteLine("Artículo\t|Precio|Costo Hora|Horas Trabajadas|Importe|");
             Console.WriteLine("***************");
 
             List<string> elerepa = new List<string>();
@@ -115,7 +107,7 @@ namespace Proyecto
 
             if (Descu == 0)
             {
-                Console.WriteLine("Descuanto aplicado: 0");
+                Console.WriteLine("Descuento aplicado: 0");
                 Console.WriteLine("\nTotal: " +ContTotal);
             }
             else
@@ -123,28 +115,17 @@ namespace Proyecto
                 double porcent = 0;
                 if (Descu == 5) porcent = 0.05;
                 if (Descu == 10) porcent = 0.10;
-
-                Console.WriteLine("Descuanto aplicado: "+Descu+"%");
+                Console.WriteLine("Descuento aplicado: "+Descu+"%");
                 Console.WriteLine("\nTotal: " + (ContTotal-(ContTotal * porcent)));
             }
-
-            Console.WriteLine("Reparaciones Hechas: "+conRepa);
+            Console.WriteLine("Reparaciones hechas: "+conRepa);
         }
-
-
-
-
-
-
-
         string dot()
         {
             string line = "";
             for (int i = 0; i < 15; i++)
             {
-
-                line.Insert(line.Length,"*");
-               
+                line.Insert(line.Length,"*"); 
             }
             return line;
         }

@@ -6,15 +6,13 @@ namespace Proyecto
 {
     public class Recursos
     {
-        public int InterMenu(string[] OpcionInterMenu)
+        public int InterMenu(string[] OpcionMenuInter)
         {
-            int optionsCoun = OpcionInterMenu.Length;
+            int optionsCoun = OpcionMenuInter.Length;
             int selected = 0;
             bool done = false;
-          
             while (!done)
             {
-
                 for (int i = 0; i < optionsCoun; i++)
                 {
                     if (selected == i)
@@ -26,11 +24,9 @@ namespace Proyecto
                     {
                         Write("  ");
                     }
-                    Write(OpcionInterMenu[i] + "\n");
+                    Write(OpcionMenuInter[i] + "\n");
                     ResetColor();
                 }
-
-
                 switch (ReadKey(true).Key)
                 {
                     case ConsoleKey.UpArrow:
@@ -41,14 +37,9 @@ namespace Proyecto
                         break;
                     case ConsoleKey.Enter:
                         done = true;
-                        break;
-                    
+                        break;                    
                 }
-
-
-
                 if (!done) CursorTop = 2;
-
             }
             return selected;
         }
@@ -63,13 +54,11 @@ namespace Proyecto
         public void tiketPro(string[] a)
         {
             string[] x = a;
-
             for (int i = 1; i <= 20; i++)
             {
                 if (i == 1)
                 {
                     Console.Write(" * " + x[0]);
-
                 }
                 if (i > x[0].Length)
                 {
@@ -77,7 +66,6 @@ namespace Proyecto
                 }
                 if (i == 15)
                 {
-
                     for (int t = 1; t <= 10; t++)
                     {
                         if (t == 1)
@@ -88,11 +76,8 @@ namespace Proyecto
                         {
                             Console.Write(".");
                         }
-
                         if (t == 10)
                         {
-
-
                             for (int q = 1; q <= 10; q++)
                             {
                                 if (q == 1)
@@ -103,11 +88,8 @@ namespace Proyecto
                                 {
                                     Console.Write(".");
                                 }
-
                                 if (q == 10)
                                 {
-
-
                                     for (int z = 1; z <= 10; z++)
                                     {
                                         if (z == 1)
@@ -121,22 +103,14 @@ namespace Proyecto
 
                                         if (z == 10)
                                         {
-
                                             Console.Write(x[4]);
-
-
                                         }
-
                                     }
-
                                 }
                             }
                         }
                     }
-
-
                 }
-
             }
         }
     }

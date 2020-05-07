@@ -9,7 +9,6 @@ namespace Proyecto
     {
         string nombre, contra, tipo;
         int opcion;
-
         public void InitSing()
         {
             Json js = new Json();
@@ -17,14 +16,13 @@ namespace Proyecto
 
             void ingreso()
             {
-                WriteLine("Ingrese datos del nuevo Usuario");
+                WriteLine("Ingrese datos del nuevo usuario");
                 Write("Nombre: ");
                 nombre = ReadLine();
                 Write("Pass: ");
                 contra = ReadLine();
                 menutipo();
                 filtro();
-
             }
 
             void menutipo()
@@ -38,10 +36,8 @@ namespace Proyecto
                     case 0: tipo = "user"; break;
                     case 1: tipo = "admin"; break;
                     case 2: tipo = "maestro"; break;
-
                 }
             }
-
 
             void filtro()
             {
@@ -53,31 +49,27 @@ namespace Proyecto
                 {
                     if (nombre == persona.user)
                     {
-                        WriteLine("Usuario ya registrado, intente otra ves...");
-                        WriteLine("Precione cualquier tecla para continuar...");
+                        WriteLine("Usuario ya registrado, intente otra vez");
+                        WriteLine("Presione cualquier tecla para continuar");
                         ReadKey();
                         ingreso();
                     }
-                    else break;
-
+                   
                 }
-
 
                 Encriptacion ec = new Encriptacion();
                 string decopass = Encriptacion.GetSHA256(contra);
                 data.usuarios.Add(new Usuario { user = nombre, pass = decopass, session = tipo });
                 js.Save(1, js.sereUS(data));
-                WriteLine("Usuario Guardado");
+                WriteLine("Usuario guardado");
                 if (tipo == "user")
                 {
-                    DataUser();
+                    DataUser(nombre);
                 }
-
             }
         }
-       
 
-        public void DataUser()
+        public void DataUser(string a)
         {
             Json js = new Json();
             var dataCl = js.desCl();
@@ -95,7 +87,7 @@ namespace Proyecto
             number = ReadLine();
             nvisita = string.Empty;
 
-            dataCl.clientes.Add(new Clients { nombre = name, dui = ndui, correo = email, numero = number, visitas = nvisita });
+            dataCl.clientes.Add(new Clients { nomusuario= a, nombre = name, dui = ndui, correo = email, numero = number, visitas = nvisita });
             js.Save(2,js.sereCl(dataCl));
             WriteLine("\n\t\tDatos de contacto guardados");
             Thread.Sleep(1000); 
@@ -110,7 +102,7 @@ namespace Proyecto
             string ndui = validationDUI, brand, plate, colors, year, entrada;
 
             WriteLine("\n\t\tIngrese los datos del vehículo");
-            Write("Entrada del veiculo D/M/A: ");
+            Write("Entrada del vehículo D/M/A: ");
             entrada = ReadLine();
             Write("\n\tMarca: ");
             brand = ReadLine();
@@ -123,7 +115,7 @@ namespace Proyecto
 
             dataVe.vehiculos.Add(new Vehicles {entrada = entrada, dui = ndui, marca = brand, placa = plate, color = colors, año = year, reparado = "En Reparacion" });
             js.Save(3, js.sereVe(dataVe));
-            WriteLine("\n\t\tDatos de vehículo guardado");
+            WriteLine("\n\t\tDatos de vehículo guardados");
             Thread.Sleep(1000); Clear();
             AddReparation(plate);
 
@@ -145,11 +137,11 @@ namespace Proyecto
             void SeleRe()
             {
                 Clear();
-                Write("\t¿Desea agregar costos y materiales en este momento? Presione [y] Para continuar    [n] Para Saltar");
+                Write("\t¿Desea agregar costos y materiales en este momento?     Presione [y] Para continuar  [n] Para Saltar");
                 switch (ReadKey(true).Key)
                 {
                     case ConsoleKey.Y:
-                        Write("\tReparacion a hacer: ");
+                        Write("\tReparación a hacer: ");
                         reparacion = ReadLine();
                         Write("\tMateriales: ");
                         materials = ReadLine();
@@ -169,14 +161,14 @@ namespace Proyecto
                         break;
                     default:
                         SeleRe();
-                    
+                   
                     break;
                 }
             }
 
             dataRe.reparaciones.Add(new Reparation {reparacion = repa, materiales = materials, placa = nplaca, costomaterial = costm, horas = hour, costohora = costh, estadodeReparacion = estadoREPA });
             js.Save(4, js.sereRe(dataRe));
-            WriteLine("\n\t\tDatos de reparación guardado");
+            WriteLine("\n\t\tDatos de reparación guardados");
         }
 
     }

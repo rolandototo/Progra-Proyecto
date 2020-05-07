@@ -4,34 +4,30 @@ using System.Collections.Generic;
 namespace Proyecto
 {
     public class administrador : Recursos
-
     {
         int opcion;
         Json js = new Json();
         public void Init() 
         {
             Console.Clear();
-            Console.WriteLine("Bienvenido, a ingresado en una cuenta de administrador\n");
-
+            Console.WriteLine("\tBienvenido, ha ingresado en una cuenta de administrador\n");
             menu();
             selecMenu();
-
         }
           void menu()
-            {
+          {
                 string[] MenuOpt = { 
-                     "Crear nuevo Usuario",
-                     "Buscar Usuario",
-                     "Modificar Veiculo",
-                     "Cotizacion de reparacion por vehiculo",
-                     "Modificar Cliente",
+                     "Crear nuevo usuario",
+                     "Buscar usuario",
+                     "Modificar datos de vehículo",
+                     "Modificar reparación",
+                     "Modificar datos de cliente",
                      "Cerrar sesion",
-                     "Cerrar Programa" };
+                     "Cerrar programa" };
                 opcion=InterMenu(MenuOpt);
-            }
-            void selecMenu()
-            {
-                
+          }
+          void selecMenu()
+          { 
                 switch (opcion)
                 {
                     case 0:
@@ -46,7 +42,7 @@ namespace Proyecto
                         Console.Clear();
                         List<string> elementos = new List<string>();
                         
-                        Console.WriteLine("Seleccione el numero de Dui del dueño de los veiculos a modificar\n");
+                        Console.WriteLine("\tSeleccione el número de DUI del dueño de los vehículos a modificar\n");
                         var data = js.desCl();
                         foreach (var opt in data.clientes)
                         {
@@ -62,24 +58,24 @@ namespace Proyecto
                         Console.Clear();
                         List<string> ElementosMenuModReparacion = new List<string>();
 
-                        Console.WriteLine("Seleccione el numero de Dui del usuario a modificar\n");
-                        var DataVeiculo = js.desVe();
-                        foreach (var BusquedaUsuario in DataVeiculo.vehiculos)
+                        Console.WriteLine("\tSeleccione el número de DUI del usuario a modificar\n");
+                        var DataVehiculo = js.desVe();
+                        foreach (var BusquedaUsuario in DataVehiculo.vehiculos)
                         {
                             ElementosMenuModReparacion.Add(BusquedaUsuario.dui);
                         }
                         string[] ArrayMenuRepa = ElementosMenuModReparacion.ToArray();
                         int OpcionMenuRepa = InterMenu(ArrayMenuRepa);
-                    CotVeiculo cv = new CotVeiculo();
-                    cv.InitCoti(ArrayMenuRepa[OpcionMenuRepa]);
+                        CotVeiculo cv = new CotVeiculo();
+                        cv.InitCoti(ArrayMenuRepa[OpcionMenuRepa]);
                         break;
                     case 4:
                             Console.Clear();
                         List<string> ElementosMenuModClientes = new List<string>();
 
-                        Console.WriteLine("Seleccione el numero de Dui del usuario a modificar\n");
-                        var DataClinete = js.desCl();
-                        foreach (var BusquedaUsuario in DataClinete.clientes)
+                        Console.WriteLine("\tSeleccione el número de DUI del usuario a modificar\n");
+                        var DataCliente = js.desCl();
+                        foreach (var BusquedaUsuario in DataCliente.clientes)
                         {
                             ElementosMenuModClientes.Add(BusquedaUsuario.dui);
                         }
@@ -96,7 +92,7 @@ namespace Proyecto
                             Console.Clear();
                             Environment.Exit(1); break;
                 }
-                Console.Write("Precione una tecla para regresar al menu......");
+                Console.Write("\n\tPresione una tecla para regresar al menú");
                 Console.ReadKey();
                 Console.Clear();
                 Init();

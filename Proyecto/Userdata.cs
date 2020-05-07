@@ -3,18 +3,11 @@ using static System.Console;
 
 namespace Proyecto
 {
-    
     public class Userdata : Recursos 
     {
-        Json js = new Json();
-
-       
-        public string Nombre;
-      
+        Json js = new Json();  
+        public string Nombre;  
         int opcion;
-
-
-
         public void Init(string a)
         {
             var data = js.desCl();
@@ -25,26 +18,20 @@ namespace Proyecto
                     Nombre = persona.nombre;
                 }
             }
-
-
             menu();
         }
         void menu()
         {
-
-            WriteLine("Bienvenid: " + Nombre + " escoja una opcion\n");
-            string[] MenuOpt = { "Ver informacion del usuario",
-             "Ver ticket", "Cerrar sesion","Cerrar programa" };
+            WriteLine("Bienvenid@: " + Nombre + " escoja una opción\n");
+            string[] MenuOpt = { "Ver información del usuario",
+            "Ver ticket", "Cerrar sesión","Cerrar programa" };
             opcion = InterMenu(MenuOpt);
             selecMenu();
         }
-
-
         void selecMenu()
         {
             switch (opcion)
             {
-
                 case 0:
                     Clear();
                     Busqueda bs =new Busqueda();
@@ -58,10 +45,9 @@ namespace Proyecto
                     Login lg = new Login();
 
                     lg.LogStart(); break;
-                case 3: Environment.Exit(1); break;
-               
+                case 3: Environment.Exit(1); break;   
             }
-            Write("Precione una tecla para regresar al menu......");
+            Write("Presione una tecla para regresar al menú");
             ReadKey();
             Clear();
             menu();

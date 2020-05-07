@@ -1,0 +1,42 @@
+{
+	"clientes": [{
+		"nombre": "Juan",
+		"dui": "1276856-3",
+		"correo": "juan@taller-proyecto.com",
+		"numero": "2542-6345",
+		"visitas": "1"
+	}, {
+		"nombre": "Rodrigo",
+		"dui": "123986-3",
+		"correo": "rodrigo@taller-proyecto.com",
+		"numero": "4342-6345",
+		"visitas": "1"
+	}]
+}
+
+
+{
+	"vehiculos": [{
+		"dui": "1276856-3",
+		"marca": "kia",
+		"placa": "iyu-687",
+		"color": "rojo",
+		"año": "2015",
+		"estado": "false"
+	}]
+}
+
+
+{
+	"reparaciones": [{
+		"Fecha":"10/04/2019",
+		"reparacion": "Juan",
+		"placa": "Juan",
+		"materiales": "1276856-3",
+		"costomaterial": "$200",
+		"horas": "4",
+		"costohora": "20",
+		"cuenta": "",
+		"estadodeReparacion": ""
+	}]
+}

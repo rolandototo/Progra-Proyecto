@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Proyecto
-{
-    
+{  
     public class Json
-    {
-       
+    {    
         //Logs.json
         ///////////////////////////////////////////////////////////////////
-
         public US desUS() => JsonConvert.DeserializeObject<US>(File.ReadAllText(@"Logs.json"));
         public string sereUS(US b) => JsonConvert.SerializeObject(b);
 
@@ -32,7 +29,6 @@ namespace Proyecto
 
         public void Save(int file, string data)
         {
-
             switch (file)
             {
                 case 1:
@@ -49,11 +45,10 @@ namespace Proyecto
                     break;
             }
         }
-
     }
 
     //Lista de Usuarios
-    /// ///////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
     public class US
     {
         public List<Usuario> usuarios { get; set; }
@@ -67,7 +62,7 @@ namespace Proyecto
     }
 
     //Lista de veiculos
-    /// ///////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
     public class ClientClass
     {
         public List<Clients> clientes { get; set; }
@@ -83,7 +78,7 @@ namespace Proyecto
         public string visitas { get; set; }
     }
     //Lista de Vehiculos
-    /// ///////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
     public class VehicleClass
     {
         public List<Vehicles> vehiculos { get; set; }
@@ -100,7 +95,7 @@ namespace Proyecto
         public string reparado { get; set; }
     }
     //Lista de reparación
-    /// ///////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
     public class ReparationClass
     {
         public List<Reparation> reparaciones { get; set; }

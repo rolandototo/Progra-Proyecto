@@ -14,7 +14,6 @@ namespace Proyecto
             var dataVe = js.desVe();
             List<string> elementos = new List<string>();
 
-
             foreach (var Vei in dataVe.vehiculos)
             {
                 if (validationDUI == Vei.dui)
@@ -23,46 +22,41 @@ namespace Proyecto
                 }
             }
 
-            elementos.Add("Salir al menu anterior");
+            elementos.Add("Salir al menú anterior");
             string[] MenuGetDui = elementos.ToArray();
             Clear();
-            WriteLine("Escoja el veiculo a modificar\n");
+            WriteLine("\tEscoja el vehículo a modificar\n");
             int opt = rs.InterMenu(MenuGetDui);
-            int index = Array.IndexOf(MenuGetDui, "Salir al menu anterior");
+            int index = Array.IndexOf(MenuGetDui, "Salir al menú anterior");
 
             if (opt == index)
             {
                 Clear(); administrador ad = new administrador();
                 ad.Init();
             }
-
-
-            string[] MenuOpcionMood = {"Entrada","dui","Marca","Placa","Color","Año","Estado","Regresar al menu anterior" };
+            string[] MenuOpcionMood = {"Entrada","dui","Marca","Placa","Color","Año","Estado","Regresar al menú anterior" };
             Menumod(MenuGetDui[opt]);
-
 
             void Menumod(string p)
             {
                 Clear();
-                WriteLine("Datos del veiculo de placa " + p + "\n");
+                WriteLine("\tDatos del vehículo de placa: " + p + "\n");
 
                 foreach (var vei in dataVe.vehiculos)
                 {
                     if (p == vei.placa)
                     {
-                        WriteLine("Entrada del veiculo: " + vei.entrada);
-
+                        WriteLine("Entrada del vehículo: " + vei.entrada);
                         WriteLine("Marca: " + vei.marca);
                         WriteLine("Placa: " + vei.placa);
                         WriteLine("color: " + vei.color);
                         WriteLine("Año: " + vei.año);
                         WriteLine("Estado: " + vei.reparado);
-
                     }
                 }
                 ReadKey();
                 Clear();
-                WriteLine("Menu de datos a modificar\n");
+                WriteLine("\tMenú de datos a modificar\n");
                 int opt2 = rs.InterMenu(MenuOpcionMood);
 
                 switch (opt2)
@@ -72,11 +66,10 @@ namespace Proyecto
                         {
                             if (p == vei.placa)
                             {
-                                WriteLine("\nEscriba la fecha dde entreda en formato D/M/A");
+                                Write("\n\tEscriba la fecha de entrada en formato D/M/A: ");
                                 vei.entrada = ReadLine();
-
                                 js.Save(3,js.sereVe(dataVe));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(p);
                             }
@@ -87,11 +80,10 @@ namespace Proyecto
                         {
                             if (p == vei.placa)
                             {
-                                WriteLine("\nEscriba el Dui nuevo");
+                                Write("\n\tEscriba el DUI nuevo: ");
                                 vei.dui = ReadLine();
-
                                 js.Save(3, js.sereVe(dataVe));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(p);
                             }
@@ -102,11 +94,10 @@ namespace Proyecto
                         {
                             if (p == vei.placa)
                             {
-                                WriteLine("\nEscriba la nueva marca");
+                                Write("\n\tEscriba la nueva marca: ");
                                 vei.marca = ReadLine();
-
                                 js.Save(3, js.sereVe(dataVe));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(p);
                             }
@@ -117,11 +108,10 @@ namespace Proyecto
                         {
                             if (p == vei.placa)
                             {
-                                WriteLine("\nEscriba la Placa nueva");
+                                WriteLine("\n\tEscriba la placa nueva: ");
                                 vei.placa = ReadLine();
-
                                 js.Save(3, js.sereVe(dataVe));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(vei.placa);
                             }
@@ -132,11 +122,10 @@ namespace Proyecto
                         {
                             if (p == vei.placa)
                             {
-                                WriteLine("\nEscriba el nuevo color");
+                                WriteLine("\n\tEscriba el nuevo color: ");
                                 vei.color = ReadLine();
-
                                 js.Save(3, js.sereVe(dataVe));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(p);
                             }
@@ -147,11 +136,10 @@ namespace Proyecto
                         {
                             if (p == vei.placa)
                             {
-                                WriteLine("\nEscriba el nuevo año");
+                                WriteLine("\n\tEscriba el nuevo año: ");
                                 vei.año = ReadLine();
-
                                 js.Save(3, js.sereVe(dataVe));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(p);
                             }
@@ -162,20 +150,20 @@ namespace Proyecto
                         {
                             if (p == vei.placa)
                             {
-                                string[] estado={"Reparado","En Reparacion" };
+                                string[] estado={"Reparado","En reparación" };
                                 Clear();
-                                WriteLine("\nSeleccion el Estado del veiculo");
+                                WriteLine("\nSeleccione el estado del vehículo");
                                 int opt3 =rs.InterMenu(estado);
                                 switch (opt3)
                                 {
                                     case 0:
                                         vei.reparado = "Reparado"; break;
                                     case 1:
-                                        vei.reparado = "En Reparacion"; break;
+                                        vei.reparado = "En reparación"; break;
                                 }
 
                                 js.Save(3, js.sereVe(dataVe));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(p);
                             }
@@ -184,9 +172,7 @@ namespace Proyecto
                     case 7:
                         ModVehiculo(validationDUI);
                         break;
-
                 }
-
             }
 
 

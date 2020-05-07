@@ -8,42 +8,35 @@ namespace Proyecto
     {
         Json js = new Json();
         administrador ad = new administrador();
-
         public void initBus()
         {
             Clear();
             Search();
             void Search()
             {
-
                 List<string> ElementosDuiMenu = new List<string>();
-
-                Console.WriteLine("Seleccione el nombre del cliente a buscar\n");
+                WriteLine("\tSeleccione el nombre del cliente a buscar\n");
                 var data = js.desCl();
                 foreach (var opt in data.clientes)
                 {
                     ElementosDuiMenu.Add(opt.nombre);
                 }
-                ElementosDuiMenu.Add("Salir al menu anterior");
+                ElementosDuiMenu.Add("Salir al menú anterior");
                 string[] menutik = ElementosDuiMenu.ToArray();
                 int OpcionMenu = InterMenu(menutik);
-                int index = Array.IndexOf(menutik, "Salir al menu anterior");
-
+                int index = Array.IndexOf(menutik, "Salir al menú anterior");
                 if (OpcionMenu == index)
                 {
-                    Clear(); 
+                    Clear();
                     ad.Init();
                 }
                 BusHere(menutik[OpcionMenu]);
-
                 ReadKey();
-                WriteLine("Apreta cualquier tecla para regresara al menu anterior");
-
+                WriteLine("\n\tPresione cualquier tecla para regresar al menú anterior");
                 ad.Init();
                 Clear();
             }
         }
-
         public void BusHere(string wanted)
         {
             string NombrePersona = wanted;
@@ -53,7 +46,7 @@ namespace Proyecto
             var dataVe = js.desVe();
             var dataRe = js.desRe();
             Clear();
-            WriteLine("RESULTADO\n");
+            WriteLine("\tRESULTADO\n");
 
             foreach (var person in dataCl.clientes)
             {
@@ -106,12 +99,8 @@ namespace Proyecto
             }
             if (error == true)
             {
-                WriteLine("\n\t\tDatos no encontrados");
+                WriteLine("\n\t\tDatos NO encontrados");
             }
-
-
         }
-
     }
-
 }

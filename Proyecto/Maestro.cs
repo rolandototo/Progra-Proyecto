@@ -3,12 +3,10 @@ namespace Proyecto
 {
     public class Maestro
     {
-
         public void Init()
-        {
-        
-            Console.WriteLine("Bienvenido Maestro. Este Usuario le da control total tanto el modo de consulta del usuario como el modo de adminsitrador");
-            string[] OpcionMenu = { "Ingresar como administrador", "Ingresar como Usuario de prueva (Alberto)", "Regresar al login","Cerrar programa" };
+        {      
+            Console.WriteLine("Bienvenido Maestro. Este Usuario otorga el control total tanto el modo de consulta del usuario como el modo de adminsitrador");
+            string[] OpcionMenu = { "Ingresar como administrador", "Ingresar como usuario de prueba (Alberto)", "Regresar al login","Cerrar programa" };
             Recursos re = new Recursos();
             int opcion = re.InterMenu(OpcionMenu);
             switch (opcion)

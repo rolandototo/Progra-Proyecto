@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.IO;
 using static System.Console;
 namespace Proyecto
@@ -16,7 +15,6 @@ namespace Proyecto
 
             List<string> elementos = new List<string>();
 
-
             foreach (var ContClient in dataCl.clientes)
             {
                 if (validationDUI == ContClient.dui)
@@ -25,12 +23,12 @@ namespace Proyecto
                 }
             }
 
-            elementos.Add("Salir al menu anterior");
+            elementos.Add("Salir al menú anterior");
             string[] MenuGetNombre = elementos.ToArray();
             Clear();
-            WriteLine("Se encontro este nombre a modificar\n");
+            WriteLine("Se encontraron estos nombres a modificar\n");
             int opt = rs.InterMenu(MenuGetNombre);
-            int index = Array.IndexOf(MenuGetNombre, "Salir al menu anterior");
+            int index = Array.IndexOf(MenuGetNombre, "Salir al menú anterior");
 
             if (opt == index)
             {
@@ -38,31 +36,30 @@ namespace Proyecto
                 ad.Init();
             }
 
-            string[] MenuOpcionMood = { "Nombre", "Dui", "Correo", "Numero","Regresar al menu anterior" };
+            string[] MenuOpcionMood = { "Nombre", "Dui", "Correo", "Número","Regresar al menú anterior" };
             Menumod(MenuGetNombre[opt]);
 
 
             void Menumod(string p)
             {
                 Clear();
-                WriteLine("Datos del usuario" + p + "\n");
+                WriteLine("\tDatos del usuario: " + p + "\n");
 
                 foreach (var BuscadorUsuario in dataCl.clientes)
                 {
                     if (p == BuscadorUsuario.nombre)
                     {
-                        WriteLine("Nombre del cliente: " + BuscadorUsuario.nombre);
-
-                        WriteLine("Dui: " + BuscadorUsuario.dui);
-                        WriteLine("Correo: " + BuscadorUsuario.correo);
-                        WriteLine("Numero: " + BuscadorUsuario.numero);
-                        WriteLine("Visitas realisada: " + BuscadorUsuario.visitas);
+                        WriteLine("\t\tNombre del cliente: " + BuscadorUsuario.nombre);
+                        WriteLine("\t\tDUI: " + BuscadorUsuario.dui);
+                        WriteLine("\t\tCorreo: " + BuscadorUsuario.correo);
+                        WriteLine("\t\tNúmero: " + BuscadorUsuario.numero);
+                        WriteLine("\t\tVisitas realizadas: " + BuscadorUsuario.visitas);
 
                     }
                 }
                 ReadKey();
                 Clear();
-                WriteLine("Menu de datos a modificar\n");
+                WriteLine("\tMenú de datos a modificar\n");
                 int opt2 = rs.InterMenu(MenuOpcionMood);
 
                 switch (opt2)
@@ -72,11 +69,11 @@ namespace Proyecto
                         {
                             if (p == BuscadorUsuario.nombre)
                             {
-                                WriteLine("\nEscriba el nuevo nombre del usuario: ");
+                                Write("\n\tEscriba el nuevo nombre del usuario: ");
                                 BuscadorUsuario.nombre = ReadLine();
 
                                 js.Save(2, js.sereCl(dataCl));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(BuscadorUsuario.nombre);
                             }
@@ -87,11 +84,22 @@ namespace Proyecto
                         {
                             if (p == BuscadorUsuario.nombre)
                             {
-                                WriteLine("\nEscriba el Dui nuevo");
+                                string OldDui = BuscadorUsuario.dui;
+                                Write("\n\tEscriba el DUI nuevo: ");
                                 BuscadorUsuario.dui = ReadLine();
-
+                                string NewDuiVei = BuscadorUsuario.dui;
                                 js.Save(2, js.sereCl(dataCl));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                var DataVei=js.desVe();
+                                foreach (var BUsquedaVei in DataVei.vehiculos)
+                                {
+                                    if (OldDui== BUsquedaVei.dui)
+                                    {
+                                        BUsquedaVei.dui = NewDuiVei;
+                                    }
+                                }
+                                js.Save(3, js.sereVe(DataVei));
+
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(p);
                             }
@@ -102,11 +110,11 @@ namespace Proyecto
                         {
                             if (p == BuscadorUsuario.nombre)
                             {
-                                WriteLine("\nEscriba el nuevo correo: ");
+                                Write("\n\tEscriba el nuevo correo: ");
                                 BuscadorUsuario.correo = ReadLine();
 
                                 js.Save(2, js.sereCl(dataCl));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(p);
                             }
@@ -117,11 +125,11 @@ namespace Proyecto
                         {
                             if (p == BuscadorUsuario.numero)
                             {
-                                WriteLine("\nEscriba el nuevo numero: ");
+                                Write("\n\tEscriba el nuevo número: ");
                                 BuscadorUsuario.numero = ReadLine();
 
                                 js.Save(2, js.sereCl(dataCl));
-                                WriteLine("Dato guardado!, presione una tecla para regresar al menu de Modificacion");
+                                WriteLine("\n\tDato guardado. Presione una tecla para regresar al menú de modificación");
                                 ReadKey();
                                 Menumod(p);
                             }
@@ -129,9 +137,7 @@ namespace Proyecto
                         break;
                     case 4:
                         Mod(validationDUI);
-
-                        break;
-                    
+                        break; 
                 }
 
             }
