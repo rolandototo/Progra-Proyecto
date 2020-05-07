@@ -10,8 +10,7 @@ namespace Proyecto
         string nombre, contra, tipo;
         int opcion;
 
-
-        public SignIn()
+        public void InitSing()
         {
             Json js = new Json();
             ingreso();
@@ -30,8 +29,9 @@ namespace Proyecto
 
             void menutipo()
             {
-                Write("Tipo de usuario\n");
-                string[] MenuOpt = { "Usuario","Administrador","Maestro" };
+                Clear();
+                WriteLine("Tipo de usuario\n");
+                string[] MenuOpt = { "Usuario", "Administrador", "Maestro" };
                 opcion = InterMenu(MenuOpt);
                 switch (opcion)
                 {
@@ -66,16 +66,16 @@ namespace Proyecto
                 Encriptacion ec = new Encriptacion();
                 string decopass = Encriptacion.GetSHA256(contra);
                 data.usuarios.Add(new Usuario { user = nombre, pass = decopass, session = tipo });
-                File.WriteAllText(@"usuarios.json", js.sereUS(data));
+                js.Save(1, js.sereUS(data));
                 WriteLine("Usuario Guardado");
-                DataUser();
+                if (tipo == "user")
+                {
+                    DataUser();
+                }
+
             }
-
-            //ReadKey();
-            //administrador adm = new administrador();
-            //adm.Init();
-
         }
+       
 
         public void DataUser()
         {
@@ -96,7 +96,7 @@ namespace Proyecto
             nvisita = string.Empty;
 
             dataCl.clientes.Add(new Clients { nombre = name, dui = ndui, correo = email, numero = number, visitas = nvisita });
-            File.WriteAllText(@"clientes.json", js.sereCl(dataCl));
+            js.Save(2,js.sereCl(dataCl));
             WriteLine("\n\t\tDatos de contacto guardados");
             Thread.Sleep(1000); 
             Clear();
@@ -107,10 +107,11 @@ namespace Proyecto
         {
             Json js = new Json();
             var dataVe = js.desVe();
-            string ndui = validationDUI, brand, plate, colors, year, estadoVE;
+            string ndui = validationDUI, brand, plate, colors, year, entrada;
 
             WriteLine("\n\t\tIngrese los datos del vehículo");
-
+            Write("Entrada del veiculo D/M/A: ");
+            entrada = ReadLine();
             Write("\n\tMarca: ");
             brand = ReadLine();
             Write("\tPlaca: ");
@@ -119,11 +120,9 @@ namespace Proyecto
             colors = ReadLine();
             Write("\tAño: ");
             year = ReadLine();
-            Write("\tEstado del vehículo: ");
-            estadoVE = ReadLine();
 
-            dataVe.vehiculos.Add(new Vehicles { dui = ndui, marca = brand, placa = plate, color = colors, año = year, estado = estadoVE });
-            File.WriteAllText(@"vehiculos.json", js.sereVe(dataVe));
+            dataVe.vehiculos.Add(new Vehicles {entrada = entrada, dui = ndui, marca = brand, placa = plate, color = colors, año = year, reparado = "En Reparacion" });
+            js.Save(3, js.sereVe(dataVe));
             WriteLine("\n\t\tDatos de vehículo guardado");
             Thread.Sleep(1000); Clear();
             AddReparation(plate);
@@ -133,7 +132,7 @@ namespace Proyecto
         {
             Json js = new Json();
             var dataRe = js.desRe();
-            string nplaca = validationPLACA, date, repa, estadoREPA, opt, materials, costm, hour, costh, tcuenta, VarEmpty = string.Empty;
+            string nplaca = validationPLACA, reparacion, date, repa, estadoREPA, materials, costm, hour, costh, VarEmpty = string.Empty;
 
             WriteLine("\n\t\tIngrese los datos de la reparación");
             Write("\n\tFecha de ingreso del vehículo al taller: ");
@@ -142,31 +141,43 @@ namespace Proyecto
             repa = ReadLine();
             Write("\tEstado de reparación: ");
             estadoREPA = ReadLine();
-            Write("\t¿Desea agregar costos y materiales en este momento? Digite [SI] Para continuar    [NO] Para ");
-            opt = ReadLine();
-            if (opt == "SI")
+            SeleRe();
+            void SeleRe()
             {
-                Write("\tMateriales: ");
-                materials = ReadLine();
-                Write("\tCosto de materiales: ");
-                costm = ReadLine();
-                Write("\tHoras de mano de obra: ");
-                hour = ReadLine();
-                Write("\tCosto de mano de obra por hora: ");
-                costh = ReadLine();
+                Clear();
+                Write("\t¿Desea agregar costos y materiales en este momento? Presione [y] Para continuar    [n] Para Saltar");
+                switch (ReadKey(true).Key)
+                {
+                    case ConsoleKey.Y:
+                        Write("\tReparacion a hacer: ");
+                        reparacion = ReadLine();
+                        Write("\tMateriales: ");
+                        materials = ReadLine();
+                        Write("\tCosto de materiales: ");
+                        costm = ReadLine();
+                        Write("\tHoras de mano de obra: ");
+                        hour = ReadLine();
+                        Write("\tCosto de mano de obra por hora: ");
+                        costh = ReadLine();
+                        break;
+                    case ConsoleKey.N:
+                        reparacion = VarEmpty;
+                        materials = VarEmpty;
+                        costm = VarEmpty;
+                        hour = VarEmpty;
+                        costh = VarEmpty;
+                        break;
+                    default:
+                        SeleRe();
+                    
+                    break;
+                }
+            }
 
-            }
-            else
-            {
-                materials = VarEmpty;
-                costm = VarEmpty;
-                hour = VarEmpty;
-                costh = VarEmpty;
-            }
-            tcuenta = VarEmpty;
-            dataRe.reparaciones.Add(new Reparation { fecha = date, reparacion = repa, materiales = materials, placa = nplaca, costomaterial = costm, horas = hour, costohora = costh, cuenta = tcuenta, estadodeReparacion = estadoREPA });
-            File.WriteAllText(@"reparaciones.json", js.sereRe(dataRe));
+            dataRe.reparaciones.Add(new Reparation {reparacion = repa, materiales = materials, placa = nplaca, costomaterial = costm, horas = hour, costohora = costh, estadodeReparacion = estadoREPA });
+            js.Save(4, js.sereRe(dataRe));
             WriteLine("\n\t\tDatos de reparación guardado");
         }
+
     }
 }

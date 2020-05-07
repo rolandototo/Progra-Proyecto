@@ -1,93 +1,117 @@
 ﻿using System;
+using System.Collections.Generic;
 using static System.Console;
 
 namespace Proyecto
 {
-    public class Busqueda
+    public class Busqueda : Recursos
     {
         Json js = new Json();
-        bool correccion = false;
+        administrador ad = new administrador();
 
-
-
-        public Busqueda()
+        public void initBus()
         {
             Clear();
-            bool error = true;
             Search();
-
             void Search()
             {
-                WriteLine("\n\t\tIngrese el nombre del cliente o número de DUI que desea buscar:");
-                string wanted = ReadLine().ToString();
-                string validationDUI = "", FastOp = "", validationPLACA = "";
-                Json js = new Json();
-                var dataCl = js.desCl();
-                var dataVe = js.desVe();
-                var dataRe = js.desRe();
-                Clear();
-                WriteLine("\n\t\tRESULTADO");
 
-                foreach (var person in dataCl.clientes)
+                List<string> ElementosDuiMenu = new List<string>();
+
+                Console.WriteLine("Seleccione el nombre del cliente a buscar\n");
+                var data = js.desCl();
+                foreach (var opt in data.clientes)
                 {
-                    if (wanted == person.nombre || wanted == person.dui)
+                    ElementosDuiMenu.Add(opt.nombre);
+                }
+                ElementosDuiMenu.Add("Salir al menu anterior");
+                string[] menutik = ElementosDuiMenu.ToArray();
+                int OpcionMenu = InterMenu(menutik);
+                int index = Array.IndexOf(menutik, "Salir al menu anterior");
+
+                if (OpcionMenu == index)
+                {
+                    Clear(); 
+                    ad.Init();
+                }
+                BusHere(menutik[OpcionMenu]);
+
+                ReadKey();
+                WriteLine("Apreta cualquier tecla para regresara al menu anterior");
+
+                ad.Init();
+                Clear();
+            }
+        }
+
+        public void BusHere(string wanted)
+        {
+            string NombrePersona = wanted;
+            string validationDUI = "", validationPLACA = "";
+            bool error = true;
+            var dataCl = js.desCl();
+            var dataVe = js.desVe();
+            var dataRe = js.desRe();
+            Clear();
+            WriteLine("RESULTADO\n");
+
+            foreach (var person in dataCl.clientes)
+            {
+                if (NombrePersona == person.nombre )
+                {
+                    error = false;
+                    Write("\n\tNombre: ");
+                    WriteLine(person.nombre);
+                    Write("\tDUI: ");
+                    WriteLine(person.dui);
+                    Write("\tNúmero cel.: ");
+                    WriteLine(person.numero);
+                    Write("\tCorreo: ");
+                    WriteLine(person.correo);
+                    validationDUI = person.dui;
+                    foreach (var car in dataVe.vehiculos)
                     {
-                        WriteLine("\n[A] Agregar vehículo [B] Editar datos de cliente [C] Editar datos de vehículo");
-                        error = false;
-                        Write("\n\tNombre: ");
-                        WriteLine(person.nombre);
-                        Write("\tDUI: ");
-                        WriteLine(person.dui);
-                        Write("\tNúmero cel.: ");
-                        WriteLine(person.numero);
-                        Write("\tCorreo: ");
-                        WriteLine(person.correo);
-                        validationDUI = person.dui;
-                        foreach (var car in dataVe.vehiculos)
+                        if (validationDUI == car.dui)
                         {
-                            if (validationDUI == car.dui)
+                            error = false;
+                            Write("\tMarca de carro: ");
+                            WriteLine(car.marca);
+                            Write("\t" + "Placa: ");
+                            WriteLine(car.placa);
+                            Write("\t" + "Año: ");
+                            WriteLine(car.año);
+                            Write("\t" + "Color: ");
+                            WriteLine(car.color);
+                            validationPLACA = car.placa;
+                            foreach (var daño in dataRe.reparaciones)
                             {
-                                error = false;
-                                Write("\tMarca de carro: ");
-                                WriteLine(car.marca);
-                                Write("\t" + "Placa: ");
-                                WriteLine(car.placa);
-                                Write("\t" + "Año: ");
-                                WriteLine(car.año);
-                                Write("\t" + "Color: ");
-                                WriteLine(car.color);
-                                validationPLACA = car.placa;
-                                foreach (var daño in dataRe.reparaciones)
+                                if (validationPLACA == daño.placa)
                                 {
-                                    if (validationPLACA == daño.placa)
-                                    {
-                                        Write("\tReparación de: ");
-                                        WriteLine(daño.reparacion);
-                                        Write("\tMateriales para repación: ");
-                                        WriteLine(daño.materiales);
-                                        Write("\tCosto de materiales: ");
-                                        WriteLine(daño.costomaterial);
-                                        Write("\tHoras en repación: ");
-                                        WriteLine(daño.horas);
-                                        Write("\tCosto por hora de mano de obra: ");
-                                        WriteLine(daño.costohora);
-                                        break;
-                                    }
+                                    Write("\tReparación de: ");
+                                    WriteLine(daño.reparacion);
+                                    Write("\tMateriales para repación: ");
+                                    WriteLine(daño.materiales);
+                                    Write("\tCosto de materiales: ");
+                                    WriteLine(daño.costomaterial);
+                                    Write("\tHoras en repación: ");
+                                    WriteLine(daño.horas);
+                                    Write("\tCosto por hora de mano de obra: ");
+                                    WriteLine(daño.costohora);
+                                    break;
                                 }
                             }
                         }
                     }
                 }
-                if (error == true)
-                {
-                    WriteLine("\n\t\tDatos no encontrados");
-                }
-
-                Clear(); 
+            }
+            if (error == true)
+            {
+                WriteLine("\n\t\tDatos no encontrados");
             }
 
 
         }
+
     }
 
 }

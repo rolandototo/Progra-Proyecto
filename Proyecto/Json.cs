@@ -7,27 +7,49 @@ namespace Proyecto
     
     public class Json
     {
-        //Usuarios.json
+       
+        //Logs.json
         ///////////////////////////////////////////////////////////////////
 
-        public US desUS() => JsonConvert.DeserializeObject<US>(File.ReadAllText(@"usuarios.json"));
+        public US desUS() => JsonConvert.DeserializeObject<US>(File.ReadAllText(@"Logs.json"));
         public string sereUS(US b) => JsonConvert.SerializeObject(b);
 
         //Archivo clientes.json
         ///////////////////////////////////////////////////////////////////
-        public ClientClass desCl() => JsonConvert.DeserializeObject<ClientClass>(File.ReadAllText(@"clientes.json"));
+        public ClientClass desCl() => JsonConvert.DeserializeObject<ClientClass>(File.ReadAllText(@"Client.json"));
         public string sereCl(ClientClass b) => JsonConvert.SerializeObject(b);
 
         //Archivo vehiculos.json
         ///////////////////////////////////////////////////////////////////
-        public VehicleClass desVe() => JsonConvert.DeserializeObject<VehicleClass>(File.ReadAllText(@"vehiculos.json"));
+        public VehicleClass desVe() => JsonConvert.DeserializeObject<VehicleClass>(File.ReadAllText(@"Veiculo.json"));
         public string sereVe(VehicleClass b) => JsonConvert.SerializeObject(b);
 
         //Archivo reparaciones.json
         ///////////////////////////////////////////////////////////////////
-        public ReparationClass desRe() => JsonConvert.DeserializeObject<ReparationClass>(File.ReadAllText(@"reparaciones.json"));
+        public ReparationClass desRe() => JsonConvert.DeserializeObject<ReparationClass>(File.ReadAllText(@"Repa.json"));
         public string sereRe(ReparationClass b) => JsonConvert.SerializeObject(b);
          
+
+        public void Save(int file, string data)
+        {
+
+            switch (file)
+            {
+                case 1:
+                    File.WriteAllText(@"Logs.json", data);
+                    break;
+                case 2:
+                    File.WriteAllText(@"Client.json", data);
+                    break;
+                case 3:
+                    File.WriteAllText(@"Veiculo.json", data);
+                    break;
+                case 4:
+                    File.WriteAllText(@"Repa.json", data);
+                    break;
+            }
+        }
+
     }
 
     //Lista de Usuarios
@@ -53,6 +75,7 @@ namespace Proyecto
     //////Keys en lista de Clientes
     public class Clients
     {
+        public string nomusuario { get; set; }
         public string nombre { get; set; }
         public string dui { get; set; }
         public string correo { get; set; }
@@ -68,12 +91,13 @@ namespace Proyecto
     //////Keys en lista de Vehiculos
     public class Vehicles
     {
+        public string entrada { get; set; }
         public string dui { get; set; }
         public string marca { get; set; }
         public string placa { get; set; }
         public string color { get; set; }
         public string año { get; set; }
-        public string estado { get; set; }
+        public string reparado { get; set; }
     }
     //Lista de reparación
     /// ///////////////////////////////////////////////////////////////
@@ -84,14 +108,12 @@ namespace Proyecto
     //////Keys en lista de reparación
     public class Reparation
     {
-        public string fecha { get; set; }
         public string reparacion { get; set; }
         public string placa { get; set; }
         public string materiales { get; set; }
         public string costomaterial { get; set; }
         public string horas { get; set; }
         public string costohora { get; set; }
-        public string cuenta { get; set; }
         public string estadodeReparacion { get; set; }
     }
 }
